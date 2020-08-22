@@ -1,0 +1,112 @@
+{% comment %} {% load staticfiles %} {% endcomment %}
+{% comment %} {% load compress %} {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en" {% block htmlattr %}{% endblock %}>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; image-src https:*; child-src 'none';">-->
+  {% block metatags %}
+  {% endblock %}
+
+  <title>{% block title %}Fotoscan{% endblock %}</title>
+
+  {% comment %} {% assign_settings_value "PRECONNECT_RESOURCES" as preconnect_resources %}
+  {% for site in preconnect_resources %}
+    <link href='{{site}}' rel='preconnect' >
+  {% endfor %} {% endcomment %}
+
+  {% comment %} {% assign_settings_value "DNS_PREFETCH" as dns_prefetch %}
+  {% for site in dns_prefetch %}
+    <link href='{{site}}' rel='dns-prefetch' >
+  {% endfor %} {% endcomment %}
+
+  {% comment %} <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'favicons/apple-touch-icon-57x57.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'favicons/apple-touch-icon-114x114.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'favicons/apple-touch-icon-72x72.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'favicons/apple-touch-icon-144x144.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{% static 'favicons/apple-touch-icon-60x60.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'favicons/apple-touch-icon-120x120.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'favicons/apple-touch-icon-76x76.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'favicons/apple-touch-icon-152x152.png' %}" />
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-196x196.png' %}" sizes="196x196" />
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-96x96.png' %}" sizes="96x96" />
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-32x32.png' %}" sizes="32x32" />
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-16x16.png' %}" sizes="16x16" />
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-128.png' %}" sizes="128x128" />
+  <meta name="application-name" content="&nbsp;"/>
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="{% static 'favicons/mstile-144x144.png' %}" />
+  <meta name="msapplication-square70x70logo" content="{% static 'favicons/mstile-70x70.png' %}" />
+  <meta name="msapplication-square150x150logo" content="{% static 'favicons/mstile-150x150.png' %}" />
+  <meta name="msapplication-wide310x150logo" content="{% static 'favicons/mstile-310x150.png' %}" />
+  <meta name="msapplication-square310x310logo" content="{% static 'favicons/mstile-310x310.png' %}" /> {% endcomment %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,700,500|Droid+Sans:400,700|Droid+Serif' rel='stylesheet' type='text/css' />
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css' />
+
+  {% block external_css %}
+  {% endblock %}
+
+    {% comment %} {% compress css %} {% endcomment %}
+        {% block head_css %}
+            <link rel="stylesheet" media="screen" href='{% static "css/external/jquery-ui.2019.02.22.min.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/external/select2.v4.0.3.min.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/sprite/sprite.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/sprite/sprite-v1.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/sprite/sprite-splash.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/main.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/navbar.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/postengine.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/external/jBox.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "js/external/bootstrap-confirmation-arrow.css" %}'>
+            <link rel="stylesheet" media="screen" href='{% static "css/Stock/stock.css" %}'>
+        {% endblock %}
+    {% comment %} {% endcompress %} {% endcomment %}
+
+  {% comment %} {% compress css %} {% endcomment %}
+      {% block app_css %}
+      {% endblock %}
+  {% comment %} {% endcompress %} {% endcomment %}
+
+  {% block structured_data %}
+  {% endblock %}
+
+  {% block page_prev_next %}
+  {% endblock %}
+
+
+  {% block real_head_js %}
+  {% endblock %}
+
+</head>
+
+
+  {% block head_js %}
+  {% endblock %}
+
+{# ONLY FOR EXTERNAL JS FILES #}
+{% block tail_js %}
+{% endblock %}
+
+{% comment %} {% compress js %} {% endcomment %}
+{% block app_js %}
+{% endblock %}
+{% comment %} {% endcompress %} {% endcomment %}
+
+{% comment %} {% compress js %} {% endcomment %}
+{% block app_js2 %}
+{% endblock %}
+{% comment %} {% endcompress %} {% endcomment %}
+
+{% block dynamic_js %}
+{% endblock %}
+
+</body>
+</html>
+
